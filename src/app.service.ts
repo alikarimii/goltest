@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { CompanyBuilder } from './company';
 
 @Injectable()
 export class AppService {
@@ -6,8 +7,14 @@ export class AppService {
     return 'Hello World!';
   }
   update(steps: any): boolean {
-    // implement
-    console.log(steps);
+    const newCompany = new CompanyBuilder()
+      .setName(steps.name)
+      .setDescription(steps.description)
+      .setPartners(steps.partners)
+      .setAddress(steps.address)
+      .build();
+
+    console.log(newCompany);
     return true;
   }
 }
